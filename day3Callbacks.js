@@ -7,7 +7,7 @@
   var addToTen = function(num1) {
     console.log('just invoked addToTen with',num1,'and 10, resulting in', 10 + num1);
   };
-  funcInvoker(addToTen, 5); //'just invoked addToTen with 5 and 10, resulting in 15'
+  // funcInvoker(addToTen, 5); //'just invoked addToTen with 5 and 10, resulting in 15'
 // This might not seem like much, and in fact, that's the point! This is functional programming: you passed a function into another function as an argument. That's all it takes. 
 
 
@@ -59,7 +59,12 @@ call5SecondsLater(function() {
 
 // Remember back to that point that a function is just a block of code we've created but not invoked yet? Obviously, we can invoke it ourselves manually by putting () next to the function name. Or, we can let the machine invoke it for us, as we did for setTimeout. 
 
+
 // Extra Credit: Let's put this together with the closures that we learned yesterday! 
-// Create a function called onlyOnce that takes in a function and returns a version of that function that can only be called once. 
+// Create a function called onlyOnce that takes in a function as a callback and returns a function that only lets that callback be invoked once. 
+// This kind of thing is useful in a variety of places: charging credit cards for an order (we only want to charge the customer once per order), signing up a new user, or even something like using a gift card or using a ticket. 
+// Here's an example of the behavior we're looking for:
 
-
+var signUpNewUserOnce = onlyOnce(signUpNewUser);
+signUpNewUserOnce();  // 'Confirmed: your new account is created!'
+signUpNewUserOnce();  // 'Whoops, it seems you already have an account! Did you mean to sign in?'

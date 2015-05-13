@@ -7,17 +7,34 @@
   var addToTen = function(num1) {
     console.log('just invoked addToTen with',num1,'and 10, resulting in', 10 + num1);
   };
-  // funcInvoker(addToTen, 5); //'just invoked addToTen with 5 and 10, resulting in 15'
+  funcInvoker(addToTen, 5); //'just invoked addToTen with 5 and 10, resulting in 15'
 // This might not seem like much, and in fact, that's the point! This is functional programming: you passed a function into another function as an argument. That's all it takes. 
 
 
 // 2. Let's create a function called breadMaker. This function takes in a single argument, and then console.logs 'mmm, fresh baked ' + argName + ' bread.'
 // Obviously, you won't see anything appear in your console because we haven't invoked it yet!
-// 3. Now let's create an array with four different ingredients in it. Mine would be ['quinoa','banana','zucchini', 'guacamole']. Clearly I'm not much of a breadbaker!
+// 3. Now let's create an ingredientsArray with four different ingredients in it. Mine would be var ingredientsArray = ['quinoa','banana','zucchini', 'guacamole'];. Clearly I'm not much of a breadbaker!
 // 4. Using a for loop, invoke breadMaker on each item in the array. What do you see in your console?
 // At this point, you might be kind of bored. Because this is exactly what we've been doing all along. That's great! Because this leads us into functional programming. 
 // Let's go through and refactor our code in a couple different ways. 
 // 5. First, within each iteration, let's use funcInvoker instead of just using breadMaker directly. funcInvoker should be passed the function that we want it to invoke, as well as the argument we want passed into that function. 
+
+// Again, funcInvoker is not the most useful function in the world, but it should teach you how approachable and non-intimidating functional programming can be. 
+
+// Let's go back to that for loop again. 
+// Can we refactor this to be a bit more generalized? Right now it only works for this particular array (ingredientsArray) and this particular function (breadMaker). If we wanted to invoke this on a different array or use a different function, we'd have to write the entire loop all over again. 
+// 6. Write a function called invokeOnEach that takes in an array and a function, then invokes the function on each item in the array. 
+
+// Example:
+var jsPoints = [2,7,3,5];
+var telegraphPrepLearning = function(item) {
+  console.log('after going through Telegraph Prep, this user has',item + 1000000000,'JavaScript points!');
+};
+invokeOnEach(jsPoints, telegraphPrepLearning);
+// 'after going through Telegraph Prep, this user has 1000000002 JavaScript points!'
+// 'after going through Telegraph Prep, this user has 1000000007 JavaScript points!'
+// 'after going through Telegraph Prep, this user has 1000000003 JavaScript points!'
+// 'after going through Telegraph Prep, this user has 1000000005 JavaScript points!'
 
 
 // Let's explore another way of using callback functions: to call a function after some period of time has passed (say, after you've made an API request to get a video from YouTube, and they get back to you with the data). 
@@ -29,7 +46,7 @@ var call5SecondsLater = function(callback) {
 
 // Just to highlight the time differences, we're console.logging something right now so you can see the 5 second delay. 
 console.log('hello from yourself immediately');
-// 6. Try creating various functions and passing them in as the argument for call5SecondsLater. 
+// 7. Try creating various functions and passing them in as the argument for call5SecondsLater. 
   // Since we're not returning anything from call5SecondsLater, these functions will need to have side effects we can observe. Try modifying a variable, and console.logging it before and after we invoke call5SecondsLater (hint, we'll have to console.log it inside the funcion we pass into call5SecondsLater). 
 
 // Remember that a function is just a block of code (or instructions) that we've created but not invoked yet. 
@@ -37,7 +54,7 @@ console.log('hello from yourself immediately');
 // Or, we can create an anonymous function and not store it into a variable. function() {console.log('this is from the anonymous function');}
 // You'll notice, of course, that we're not invoking the anonymous function. But just like a function that we've stored into a variable, we can pass this anonymous function in as an argument to a higher-order function. 
 // Let's try this out! 
-// 7. Create a series of anonymous functions and pass those into call5SecondsLater. Here's an example of what I'd do:
+// 8. Create a series of anonymous functions and pass those into call5SecondsLater. Here's an example of what I'd do:
 call5SecondsLater(function() {
   console.log("don't mind me, just playing around with time travel");
 })

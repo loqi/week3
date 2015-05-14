@@ -7,7 +7,7 @@
   var addToTen = function(num1) {
     console.log('just invoked addToTen with',num1,'and 10, resulting in', 10 + num1);
   };
-  funcInvoker(addToTen, 5); //'just invoked addToTen with 5 and 10, resulting in 15'
+  // funcInvoker(addToTen, 5); //'just invoked addToTen with 5 and 10, resulting in 15'
 // This might not seem like much, and in fact, that's the point! This is functional programming: you passed a function into another function as an argument. That's all it takes. 
 
 
@@ -30,7 +30,7 @@ var jsPoints = [2,7,3,5];
 var telegraphPrepLearning = function(item) {
   console.log('after going through Telegraph Prep, this user has',item + 1000000000,'JavaScript points!');
 };
-invokeOnEach(jsPoints, telegraphPrepLearning);
+// invokeOnEach(jsPoints, telegraphPrepLearning);
 // 'after going through Telegraph Prep, this user has 1000000002 JavaScript points!'
 // 'after going through Telegraph Prep, this user has 1000000007 JavaScript points!'
 // 'after going through Telegraph Prep, this user has 1000000003 JavaScript points!'
@@ -82,13 +82,17 @@ call5SecondsLater(function() {
 // This kind of thing is useful in a variety of places: charging credit cards for an order (we only want to charge the customer once per order), signing up a new user, or even something like using a gift card or using a ticket. 
 // Here's an example of the behavior we're looking for:
 
+/*
 var signUpNewUserOnce = onlyOnce(signUpNewUser);
 signUpNewUserOnce();  // 'Confirmed: your new account is created!'
 signUpNewUserOnce();  // 'Whoops, it seems you already have an account! Did you mean to sign in?'
+*/
 
 // Extra Extra Credit: Now let's create a better version of onlyOnce that lets us pass in arguments to the callback function! 
 // Example: 
+/*
 var multiplyOnce = onlyOnce(multiply);
 multiply(3,5); // 15
 multiply(4,8); // nothing should happen here. 
+*/
 // HINT: you'll need to use the arguments keyword and apply. Feel free to google for these if you want to explore further! 

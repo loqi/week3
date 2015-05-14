@@ -1,6 +1,6 @@
 // Let's do a quick review of functions. 
 // Remember that a function is just a block of code that we've created but not invoked yet. 
-// An analogy for this is a recipe. Writing a function is like writing a recipe. Invoking a function is like actualy baking that recipe. Another way of thinking of this is that the function is a set of instructions, but we haven't yet carried out those instructions. 
+// An analogy for this is a recipe. Writing a function is like writing a recipe. Invoking a function is like actually baking that recipe. Another way of thinking of this is that the function is a set of instructions, but we haven't yet carried out those instructions. 
 
 // 1. Create a very basic function called funcInvoker. This isn't a complex function, it just has one simple task. It's going to have two parameters: funcToInvoke, and argToInvokeWith. As you may have already guessed, funcToInvoke is a function (any function!) that the user passes in to us. And argToInvokeWith is an argument (any argument!) that the user gives us to invoke that function with. All our basic little function has to do is invoke funcToInvoke with argToInvokeWith. 
   // Example invocation: 
@@ -47,7 +47,7 @@ var call5SecondsLater = function(callback) {
 // Just to highlight the time differences, we're console.logging something right now so you can see the 5 second delay. 
 console.log('hello from yourself immediately');
 // 7. Try creating various functions and passing them in as the argument for call5SecondsLater. 
-  // Since we're not returning anything from call5SecondsLater, these functions will need to have side effects we can observe. Try modifying a variable, and console.logging it before and after we invoke call5SecondsLater (hint, we'll have to console.log it inside the funcion we pass into call5SecondsLater). 
+  // Since we're not returning anything from call5SecondsLater, these functions will need to have side effects we can observe. Try modifying a variable, and console.logging it before and after we invoke call5SecondsLater (hint, we'll have to console.log it inside the function we pass into call5SecondsLater). 
 
 // Remember that a function is just a block of code (or instructions) that we've created but not invoked yet. 
 // We can create a function and then store it into a variable, as we've done with var call5SecondsLater = function() {};

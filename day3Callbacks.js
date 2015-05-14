@@ -85,3 +85,10 @@ call5SecondsLater(function() {
 var signUpNewUserOnce = onlyOnce(signUpNewUser);
 signUpNewUserOnce();  // 'Confirmed: your new account is created!'
 signUpNewUserOnce();  // 'Whoops, it seems you already have an account! Did you mean to sign in?'
+
+// Extra Extra Credit: Now let's create a better version of onlyOnce that lets us pass in arguments to the callback function! 
+// Example: 
+var multiplyOnce = onlyOnce(multiply);
+multiply(3,5); // 15
+multiply(4,8); // nothing should happen here. 
+// HINT: you'll need to use the arguments keyword and apply. Feel free to google for these if you want to explore further! 

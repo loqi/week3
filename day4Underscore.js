@@ -11,8 +11,25 @@
 
 
 //map: turn an array of colors into an array of objects with a color property
-//add 5 to each item in an array. 
-//categories: create an object that maps from shortened city names to full city names. 
+// Map:
+// Map takes in an array or object, mutates it in some way, and returns the mutated array. 
+  // It's really important to pay attention to that part where map returns the mutated array. It does this for you automatically, but some people will forget to store the results of what map returns into a variable, and thus, miss out on all the work that map just did for us. 
+// The callback function inside of map does three key things:
+  // 1. It takes in an item (the current item we're iterating through in the array).
+  // 2. It performs some logic on that item, most frequently mutating that item in some way.
+  // 3. It returns an item that map will automatically add to our returnArray for us behind the scenes. 
+  // Since the callback is run once on every item in our original array, and the return value from our callback (even if it's undefined) are pushed into our resultsArray by map, our final resultsArray that map returns will always have the same number of items in it that our original array did. 
+  // The key part is that the callback function inside of map has to do these three things every time. 
+    // And then map returns an array with the returned value from every iteration of our callback function.
+
+// So let's get in some practice with map!
+var testArr = [100,200,300,400,500];
+// 1. Add 5 to each item in testArr
+  // console.log the results of map. You should see an array of [105,205,305,405,505]
+  // console.log testArr. This should not have changed at all. If it did change, that means you're using map like each to have side effects, and that's not what map is designed for. 
+
+// 2. Let's do another transform. 
+  var shortNameArr = ['SF','NYC','Chi','Oak','SJ'];
   var cityMapper = {
     SF: 'San Francisco',
     NYC: 'New York City',
@@ -20,14 +37,14 @@
     Oak: 'Oakland',
     SJ: 'San Jose'
   };
-  //now take an array of short city names and return an array of full city names for each one. 
-  //Note that there are two different returns inside map:
-    //The one you declare manually in the callback function
-    //The one map does for you automatically returning the array at the end. 
-    //The callback function in map does three things: 
-      //1. It takes in an item. 
-      //2. It transforms that item in some way. 
-      //3. It returns the transformed item. 
+  // Let's take our shortNameArr and return an array that has the longform names of each city. So we'd expect to see ['San Francisco','New York City','Chicago','Oakland','San Jose']; 
+  // Again, console.log the results of map, and console.log shortNameArr to make sure it hasn't changed. 
+  // If you're not getting the results you expect, check back with the three rules of what our callback function must do. 
+
+// 3. Now let's use map to take an array of strings, and return an array of objects. 
+  var colorArray = ['red','purple','orange','yellow','green','purple'];
+  // let's take in colorArray, and return an array of objects that have a color property set equal to each item in colorArray. 
+  // Expected Results: [{color: 'red'}, {color:'orange'}, {color:'purple]'}, {color:'yellow'}, {color:'green'}, {color:'purple'}]
 
 //filter: filter through that array and return only the objects that have the purple color
 //
@@ -93,89 +110,48 @@ var obj = {
     // We want to get practice typing out _.each invocations as many times as possible. 
 
 // By this point you should be feeling pretty good on iterating through arrays using each! Now let's look into iterating through objects. 
+// You could just change all the invocations we had for the exercises above to be invoked on obj, instead of arr. Nothing other than that has to change. 
+// And while it's powerful to realize that _.each has some logic built into it that lets you use the same callback function for both arrays and objects, you'd be robbing yourself of a chance to gain a deeper understanding by typing these invocations again and building out that muscle memory. So let's write new _.each invocations for each exercise below, and get quicker and better at them each time!
 
-// 5. Create a for loop for objects, to iterate through our obj. 
-  // Inside the body of the for loop, console.log the string 'hi, i'm inside the for loop for objects!''
+// 5. Create an _.each invocation to iterate through our obj. 
+  // Inside the body of the callback function, console.log the string 'hi, i'm inside the callback!''
   // You should see this pop up 3 times in your console.
-  // This should tell you that the for loop for our object is running 3 times. And, much like our array for loop, 
-    // all it's doing is running the body of the for loop once on each iteration. 
+  // This should tell you that the callback function in our _.each invocation is running 3 times. And, much like when we invoked this callback on our arr, all it's doing is running the body of the callback once on each iteration. 
 // 6. Now let's check out what key is on each iteration.
-  // If you console.log the key in the for loop body, you should see 
+  // Remember that for objects, each passes in both the value and the key to each invocation of the callback
+  // If you console.log the key in the for callback function body, you should see 
   // 'city'
   // 'slingsCode'
   // 'excitementLevel' 
   // in your console.
-  // key is just a variable, that is set equal to each of the keys in our object one at a time. 
-    // Just as i is a varaible that is set equal to each of the numerical indices of our arr. 
+  // key is just a variable, that is set equal to each of the keys in our object one at a time. This part is identical to what we saw with our for loop for objects. But remember, we don't actually need to use this key to access the values! _.each gives that to us automatically as the first argument passed into our callback. 
   // Just for fun, let's create an empty array outside of our for loop called arrayOfKeys. 
     // On each iteration, let's push the key into this arrayOfKeys. After your for loop, console.log the arrayOfKeys. 
     // You should see ['city', 'slingsCode', 'excitementLevel']. Note that they may not be in this order, 
     // since we can't guarantee the order that an object's keys are in. 
 // 7. Ok, now that we've figured out that key is just a variable that will be set equal to the name of each property in obj, 
-  // let's use that to access the values stored in obj. 
-  // Write a new for loop to iterate through obj, console logging each value to the console. 
+  // let's prove that we don't need to use it to access the values stored in obj. (and in fact, using key to access those values is an anti-pattern you should avoid).
+  // Write a new _.each invocation to iterate through obj, console logging each value to the console. 
   // We'd expect to see
   // 'Oakland'
   // true
   // 10
-  // Now that you're comfortable accessing each value in obj, let's console log both key and the relevant value stored in obj. 
+  // Now that you're comfortable accessing each value in obj, let's console log both key and the relevant value stored in obj, again, without using key to access that value, since _.each gives it to us directly. 
   // So what we'd expect to see in our console is:
-    // 'the value of key is: city, the value we're accessing in the object is Oakland'
-    // 'the value of key is: slingsCode, the value we're accessing in the object is true'
-    // 'the value of key is: excitementLevel, the value we're accessing in the object is 10'
-// 8. You should be feeling pretty great about iterating through objects now! 
-  // So let's combine this with our if statement. 
-  // Let's only log a value to the console if it equals 'Oakland'. 
-  // Great! Now, let's create a new for loop for arr. Inside that for loop, let's only console.log a value 
-    // if it is both greater than 100 and less than 400
-    // Remember that we use && for and statements. 
-  // Inside another for loop for arr, only console.log the values that are either above 400, or less than 200. 
-    // Remember that we use || for or statements. 
-// 9. Now let's combine an if statement with our array for loop. 
-  // Let's put 
-  if(arr[i]) {
-    console.log(arr[i]);
-  }
-  // inside of our for loop. What do you expect this to log? 
-  // Remember that JavaScript does type coercion, forcing whatever is in the conditional part of our if(conditional) statement to be a boolean value
-  // Let's try this again:
-  if(0) {
-    console.log(arr[i]);
-  }
-  // Keep trying different combinations inside the conditional part of the if loop. Particularly, try:
-  /*
-  ''
-  0
-  1
-  NaN
-  'hi there'
-  true
-  undefined
-  -1
-  null
-  {}
-  []
-  */
-// 10. What's the difference between === and == and = ?
-  // Try using all three of them, and explaing the results of each one to your partner. Once you've done that, some explanations are below. Be sure that you can explain these to your partner, they're important!
-  // === will always return a boolean value (true, false). It checks whether two things are equal. 
-    // Put another way, threequals (===) asks the question 'Are these two things the same?', and then returns the results of that question (true or false).
-  // == YOU SHOULD NEVER USE THIS. Seriously, save yourself some serious heartache and just never use this. Also, other programmers will sometimes judge you for using ==. So really, just don't use it. 
-  // = This is for assignment. When you use the single equals, you are setting the thing on the left side of the operator equal to the thing on the right side of the operator. 
-    // x = 'I totally understand assignments!' means that we are overwriting any value that x had previously and setting x equal to the string 'I totally understand assignments!'. Play around with this a bit if you're curious! Curiosity is a wonderful trait in engineers :)
+    // 'the value of key is: city, the value _.each is giving us from that object is Oakland'
+    // 'the value of key is: slingsCode, the value _.each is giving us from that object is true'
+    // 'the value of key is: excitementLevel, the value _.each is giving us from that object is 10'
+// You should be feeling pretty great about iterating through objects using _.each now! 
 
-// Arrays extra credit: 
-// Let's revisit this concept that i is just a number. What if we wanted to iterate through an array backwards? 
-  // To do that with arr, all we'd need are the numbers 4,3,2,1,0 in that order. 
-    // Using those, we could access arr[4], arr[3], arr[2], arr[1], and arr[0], which are the values of the array in reverse. 
-  // So how can we get the number 4,3,2,1,0 in that order?
-  // Well let's investigate the signature of our for loop: for (var i = 0; i < arr.length; i++) 
-    // We just want to reverse this. So far we've been telling i to start at 0, and while i is less than the length of the array, increase i by 1. 
-    // We could just tell i to start at it's maximum value, and while it's greater than or equal to 0, to decrease by 1. 
-    // That would look like for (var i = arr.length - 1; i >=0; i--) 
-    // Use this pattern to iterate through our array backwards, console logging both i and arr[i] each time, like we did above:
-      // 'the value of i is: 4, the value we're accessing in the array is 500'
-      // 'the value of i is: 3, the value we're accessing in the array is 400'
-      // 'the value of i is: 2, the value we're accessing in the array is 300'
-      // 'the value of i is: 1, the value we're accessing in the array is 200'
-      // 'the value of i is: 0, the value we're accessing in the array is 100'
+// Bonus Material: Plus Equals += 
+    // Let's show you an example. 
+    var plusEqualsVar = 5;
+    plusEqualsVar += 10;
+    // console.log('plusEqualsVar after += 10 is:',plusEqualsVar);
+    // What += does is exacly the same as if you had typed 
+    var assignedVar = 5;
+    assignedVar = assignedVar = 10;
+    // console.log('assignedVar after assignedVar = assignedVar + 10 is:',assignedVar);
+    
+
+// Extra credit: Filter time! Look up the docs on _.filter. Use filter to filter through the array of color objects map returned to us earlier and give us only the two objects that are purple. 

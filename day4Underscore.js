@@ -9,8 +9,6 @@
   // Let's go throguh and duplicate one of these lines, changing the name of the file to day4Underscore.js.
   // Now just make sure that your day4Underscore.js file is saved in the same location as your other two .js files, and you should be good to go!
 
-
-//map: turn an array of colors into an array of objects with a color property
 // Map:
 // Map takes in an array or object, mutates it in some way, and returns the mutated array. 
   // It's really important to pay attention to that part where map returns the mutated array. It does this for you automatically, but some people will forget to store the results of what map returns into a variable, and thus, miss out on all the work that map just did for us. 
@@ -45,18 +43,6 @@ var testArr = [100,200,300,400,500];
   var colorArray = ['red','purple','orange','yellow','green','purple'];
   // let's take in colorArray, and return an array of objects that have a color property set equal to each item in colorArray. 
   // Expected Results: [{color: 'red'}, {color:'orange'}, {color:'purple]'}, {color:'yellow'}, {color:'green'}, {color:'purple'}]
-
-//filter: filter through that array and return only the objects that have the purple color
-//
-
-//each: have them create a function outside of each and invoke that on each item. 
-
-//each: really hammer home on the anonymous function part. 
-  //all the callback is is a block of code that you get to run on each item in the array. 
-  //you can define this block of code elsewhere (a named function), or you can define it right inside of the each statement (an anonymous function). 
-//NOTE: You never need to use the index to access the value. Underscore's each already gives you the value! 
-//Use the index as a practice to change only every other thing? We haven't introduced them to modulus yet...
-//Have them write a for loop. Now have them write an each loop that does the exact same thing. Note how in the for loop, what we're given each time is i, which is just a number we have to use to access the valeu stored at that position. But with each, we're given that value directly as our first parameter! 
 
 // Each is just a more semantic way of doing a for loop. Much as a for loop just lets you define a block of code to be run the same number of times as we have items in our array, each defines a block of code (a function) that gets run once on each item. 
 // The key difference is what's available for you on each iteration, or each time that block of code is run. 

@@ -88,8 +88,9 @@ var obj = {
   // 'the value of count is: 4, the value we're accessing in the array is 500'
 
 // 4. Great! Now you've figured out that our callback function is just a block of code that gets run once on each item in an array. 
-  // Now let's use a new each invocation to modify the array. Let's add 1 to each item in arr. 
-  // Now that you've added 1 to each item in arr, console.log it to see the results. 
+  // Now let's use a new _.each invocation to play with items in the array. 
+  // Let's add 1 to each item in arr, and then push it into a new array in the global scope.
+  // Now that you've added 1 to each item, console.log the new array that we've created in the global scope to see the results. 
     // We expect to see [101, 201, 301, 401, 501]
   // Have some fun doing this a few more times. Try multiplying each item in arr by some number. Then try dividing it by some number. 
     // Write entirely new _.each invocations every time, don't just change the '+' to a '/'. 

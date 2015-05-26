@@ -139,7 +139,7 @@ var num2 = numVar;
 // What do we expect numVar to be?
 // What do we expect num2 to be?
 
-num2 = num 2 + 10;
+num2 = num2 + 10;
 // What do we expect num2 to be?
 // What do we expect numVar to be? Can you explain why to your pair?
   // Remember, only objects and arrays are passed by reference. If this isn't super clear, check out this example:

@@ -126,5 +126,69 @@ bbqMeatCooker();
   // 5. functions will first look to their own local scope before reaching out to the global scope. If two variables with the same name exist in local and global scope, the function will first find the value in the lcoal scope, and never have to reach outside to the global scope. 
   // 6. The window object is synonymous with global scope. Properties set on the window object are available in the global scope. 
 
-// Whew, that's a lot of learning! 
-// 
+// Whew, that's a lot of learning so far! 
+// One of the key uses of scoping and closures is to 'stash' or 'save' a variable for later use. 
+// When might this be useful for us?
+  // When a variable is changing frequently, and we want to save it's current value. 
+  // One example of this is inside for loops. We might want to save what i is for that particular iteration. 
+  // If we stash i inside a local scope by passing it into a function, it will get to exist there, untouched and unchanged, until we do something inside that function later on. 
+    // There are certain concepts in programming that are incredibly powerful tools for complex situations. 
+      // Oftentimes, these concepts seem a bit useless in less complex situations. 
+      // This is one of those moments. 
+      // Our example below won't go into this level of complexity, but let me illustrate a moment where I used this pattern of using closures to save the current value of i inside a for loop. 
+      // And hopefully then you can see how this is a valuable pattern to learn, even if you don't see an immediate use for it. 
+        // I was working through a table in a database recently. In that table, we had the locations for each of our users. But the problem was, they just typed in a string of their location ('New York City', 'NYC', 'New York, NY', etc.), rather than latitude and longitude which we could plot on a map. 
+        // To get the latitude and longitude, I had to iterate through the entire table, grabbing each row one by one, and then make a request to an external API to get the lat/long for that row. 
+        // My connection let me make three concurrent requests, which was great, because I had 60,000 users to go through!
+        // But this mean that my value for i, which represented the row number, was changing constantly, and I couldn't count on it being stable by the time I got data back from the external API. 
+        // To get around this, I stashed i into a local scope by passing it into a function, and inside that function doing the API call. 
+        // Each function invocation gets it's own local scope. You can think of it kind of like a secret, peaceful cave. The rest of the program can be changing like mad, but that doesn't affect things inside our peaceful little cave. 
+        // So even though my row number was changing once every millisecond or so, and my API requests took several hundred milliseconds to complete, the value of i that I'd stashed into a local scop, was totally protected, unchanged, stable. 
+  // Let's see what this looks like in practice! 
+
+var iSaver = function(index, val) {
+  return function() {
+    console.log('inside of our closure scope, i is still:',index,'val is:',val);
+  };
+}
+
+var testArr = [1,2,3,4];
+for (var i = 0; i < testArr.length; i++) {
+  if(i === 1) {
+    var func1 = iSaver(i, testArr[i]);
+  }
+}
+// What is i at this point in our code? 
+// console.log('at this point in our code, i is:', i);
+
+// What do you expect to get when we invoke func1?
+// func1();
+
+// what iSaver returns to us is a function. Which is really just a fancy object. 
+  // We can push objects into arrays, and then access their values, doing something like arr[i].propName. 
+  // We can also push fancy function objects into arrays, and then invoke them, doing something like arr[i](). 
+    // Remember that JS is super modular.
+      // First, it will evaluate the arr variable, which is a link pointing to a certain spot in memory. 
+      // Then, it will enter the brackets. 
+      // Next, it will evaluate whatever is inside those brackets, and look up the results of that as a property name inside our array. 
+        // In this case, it will recognize that i is a variable (since we don't have quotes around it), and evaluate what that variable is equal to. Let's suppose i is 1. 
+      // It will then grab the thing at the 1 index position in our array. 
+      // Now arr[i] has evaluated to what that thing is in our array. In this case, it is a function. 
+      // We can then invoke that function with the open and closed parens (). 
+
+// Let's put that pattern to use!
+  // Create an empty array called closureFuncs. 
+  // Create a new for loop. 
+  // Let's create a new iSaver function for every even i in the array, and push that function into closureFuncs. 
+  // Then, once you're done with the entire for loop, log what the value of i is outside the for loop. 
+  // And then go through and invoke each function in our closureFuncs array. 
+  // Remember, when in doubt, console.log things with labels!
+  // What you should see logged out is 
+
+  TODO: Finish this part!
+  // 'inside of our closure scope, i is still: '
+
+
+// Let's try a different take on this: 
+
+// Another key use of closures is when we want to invoke the same function multiple times with different values. 

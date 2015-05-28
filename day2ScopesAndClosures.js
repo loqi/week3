@@ -1,30 +1,12 @@
-// 1. scoping's just super important. 
-// 2. Masking. naming your parameters the same thing is a bad, bad idea. 
-// 3. narration: you always look in your own scope first, then you check out into the next outer scope, etc. 
-// 4. Closure: you can invoke the same function multiple times with different arguments, and it all totally works!
-// 5. Closures: this is the same as "stashing" or saving for later, the variables you're interested in. 
-  // THis is critical. focus on using it to save what i is inside a for loop. 
-  // Relate this to how i've used this for db stuff too. 
-// Key point of closures: you can save values to be used later. This will not seem super important to you now. It will be critically important to you in the future. 
-// Functions have access to the scope they're created in, not the scope they're invoked in.
+// Welcome to the exercises for scopes and closures!
 
-// Closures:
-// 1. nameWriter. 
-
-// Ok, now you're heading off to a huge family reunion. And you nicely volunteered to make name tags for everyone! Oddly, your family is super well organized, and everyone has the same last name, Thinklestein. 
-// Create a function called nameMaker that takes in a first name as it's only argument, and then returns the robotic greeting "Welcome to the party, FIRSTNAME Thinklestein.", where FIRSTNAME is replaced by the person's first name. 
-// Now we're going to generalize this: 
-// First, let's take the minor step of removing the hard-coded value of 'Thinklestein' from the function, and allow the user to pass in both a first and last name. 
-// Create an entirely new function called reunionGreeter. We've found that we're just so good at greeting people at reunions that we decide to expand and do this for more families! reunionGreeter will let us modularize our code to the point we can do this. reunionGreeter takes in a last name, and returns a function that 
-
-
-// Much like yesterday, a lot of today is going to involve explaining your code to your pair. Follow a similar pattern to yesterday: Think through what you expect the code to do, explain that your pair, and then test it out to see what it actually does. Once you see the actual results (which will often be different than your expectations), explain why we're seeing that behavior to your pair. 
+// Much like yesterday, a lot of today is going to involve explaining your code to your pair. Follow a similar pattern to yesterday: Think through what you expect the code to do, explain that your pair, and then test it out to see what it actually does (with clear labels!!). Once you see the actual results (which will often be different than your expectations), explain why we're seeing that behavior to your pair. 
 
 // Today we're going to use a restaurant's kitchen as our example. We're going to have a couple different areas to our fancy kitchen: 
 // bbqMeatCooker
 // vegetarianCorner
 // pastryConcoctions
-// Clearly, each of these will have their own set of tools, and we need to make sure they share some things (a common menu) and not others (say the cutting board from the bbqMeatCooker and the vegetarian friendly one from vegetarianCorner). 
+// Clearly, each of these will have their own set of tools, and we need to make sure they share some things (a common restaurant name) and not others (say the cutting board from the bbqMeatCooker and the vegetarian friendly one from vegetarianCorner). 
 
 // First, let's put the name and address of our restaurant in the global scope. 
 var restaurantName = 'Telegraph Cook';
@@ -93,7 +75,6 @@ pastryConcoctions();
 
 // Talk through what happens when we try to access address inside of vegetarianCorner and bbqMeatCooker. 
 
-
 vegetarianCorner = function() {
   var chef = 'Amanda';
   var favoriteDish = 'saag paneer';
@@ -143,7 +124,7 @@ bbqMeatCooker();
         // But this mean that my value for i, which represented the row number, was changing constantly, and I couldn't count on it being stable by the time I got data back from the external API. 
         // To get around this, I stashed i into a local scope by passing it into a function, and inside that function doing the API call. 
         // Each function invocation gets it's own local scope. You can think of it kind of like a secret, peaceful cave. The rest of the program can be changing like mad, but that doesn't affect things inside our peaceful little cave. 
-        // So even though my row number was changing once every millisecond or so, and my API requests took several hundred milliseconds to complete, the value of i that I'd stashed into a local scop, was totally protected, unchanged, stable. 
+        // So even though my row number was changing once every millisecond or so, and my API requests took several dozen milliseconds to complete, the value of i that I'd stashed into a local scope, was totally protected, unchanged, stable. 
   // Let's see what this looks like in practice! 
 
 var iSaver = function(index, val) {
@@ -199,3 +180,10 @@ var toaster = function() {
     // Those public methods can access and change the private variables. 
   }
 };
+
+// Extra Credit2: 
+// Let's imagine you're heading off to a huge family reunion. And you nicely volunteered to make name tags for everyone! Oddly, your family is super well organized, and everyone has the same last name, Thinklestein. 
+// Create a function called nameMaker that takes in a first name as it's only argument, and then returns the robotic greeting "Welcome to the party, FIRSTNAME Thinklestein.", where FIRSTNAME is replaced by the person's first name. 
+// Now we're going to generalize this: 
+// First, let's take the minor step of removing the hard-coded value of 'Thinklestein' from the function, and allow the user to pass in both a first and last name. 
+// Next, Create an entirely new function called reunionGreeter. We've found that we're just so good at greeting people at reunions that we decide to expand and do this for more families! reunionGreeter will let us modularize our code to the point we can do this. reunionGreeter takes in a last name, and returns a function that greets people with the first name they pass in. 

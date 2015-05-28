@@ -153,6 +153,7 @@ var iSaver = function(index, val) {
 }
 
 var testArr = [1,2,3,4];
+
 for (var i = 0; i < testArr.length; i++) {
   if(i === 1) {
     var func1 = iSaver(i, testArr[i]);
@@ -184,11 +185,17 @@ for (var i = 0; i < testArr.length; i++) {
   // And then go through and invoke each function in our closureFuncs array. 
   // Remember, when in doubt, console.log things with labels!
   // What you should see logged out is 
+    // 'inside of our closure scope, i is still: 0, val is: 1'
+    // 'inside of our closure scope, i is still: 2, val is: 3'
+  // Try doing this again with a longer array! Or try building out different logic for what we save into our closure scopes. Generally, do what you can to get comfortable with saving values for future access into closure scopes. 
 
-  TODO: Finish this part!
-  // 'inside of our closure scope, i is still: '
-
-
-// Let's try a different take on this: 
-
-// Another key use of closures is when we want to invoke the same function multiple times with different values. 
+// Extra Credit: 
+// Using the module pattern, create a toaster. 
+// The cool part about this is that you get to decide what the user should be able to access/modify, and what we'll keep private from them. 
+var toaster = function() {
+  //some private properties here
+  return {
+    // public properties and methods here.
+    // Those public methods can access and change the private variables. 
+  }
+};

@@ -9,21 +9,23 @@
   // Let's go throguh and duplicate one of these lines, changing the name of the file to day4Underscore.js.
   // Now just make sure that your day4Underscore.js file is saved in the same location as your other two .js files, and you should be good to go!
 
-// Map:
+// ********** MAP EXERCISES**********
 // Map takes in an array or object, mutates it in some way, and returns the mutated array. 
-  // It's really important to pay attention to that part where map returns the mutated array. It does this for you automatically, but some people will forget to store the results of what map returns into a variable, and thus, miss out on all the work that map just did for us. 
+  // The key part is that map returns the mutated array. It does this for you automatically, but some people will forget to store the results of what map returns into a variable, and thus, miss out on all the work that map just did for us. 
 // The callback function inside of map does three key things:
   // 1. It takes in an item (the current item we're iterating through in the array).
   // 2. It performs some logic on that item, most frequently mutating that item in some way.
   // 3. It returns an item that map will automatically add to our returnArray for us behind the scenes. 
-  // Since the callback is run once on every item in our original array, and the return value from our callback (even if it's undefined) are pushed into our resultsArray by map, our final resultsArray that map returns will always have the same number of items in it that our original array did. 
+  // Since the callback is run once on every item in our original array, and the return values from our callback are pushed into our resultsArray by map, our final resultsArray that map returns will always have the same number of items in it that our original array did. 
   // The key part is that the callback function inside of map has to do these three things every time. 
-    // And then map returns an array with the returned value from every iteration of our callback function.
+    // And then map returns an array with the values returned from every iteration of our callback function.
+    // What happens if we don't explicitly return anything from our callback function? Can we shorten the array that way? 
+      // Remember that JS automatically returns undefined from a function for us if we don't return anything ourselves. 
 
 // So let's get in some practice with map!
 var testArr = [100,200,300,400,500];
 // 1. Add 5 to each item in testArr
-  // console.log the results of map. You should see an array of [105,205,305,405,505]
+  // console.log the results returned from map. You should see an array of [105,205,305,405,505]
   // console.log testArr. This should not have changed at all. If it did change, that means you're using map like each to have side effects, and that's not what map is designed for. 
 
 // 2. Let's do another transform. 
@@ -44,13 +46,16 @@ var testArr = [100,200,300,400,500];
   // let's take in colorArray, and return an array of objects that have a color property set equal to each item in colorArray. 
   // Expected Results: [{color: 'red'}, {color:'orange'}, {color:'purple]'}, {color:'yellow'}, {color:'green'}, {color:'purple'}]
 
-// Each is just a more semantic way of doing a for loop. Much as a for loop just lets you define a block of code to be run the same number of times as we have items in our array, each defines a block of code (a function) that gets run once on each item. 
+
+// ********** EACH EXERCISES**********
+
+// Each is just a more semantic way of doing a for loop. Much as a for loop lets you define a block of code to be run the same number of times as we have items in our array, each defines a block of code (a function) that gets run once on each item. 
 // The key difference is what's available for you on each iteration, or each time that block of code is run. 
 // With a for loop for arrays, you're given a number i each time. You then use this number to request the value stored at the i position within your array, like so: arr[i]
 // With each, you're given the value directly. While we are still given i if we want it, we don't need it, and using it to access the value stored at that position is an anti-pattern inside each, because the first parameter we take in is already the value. 
 // We'll revisit this throughout these exercises, but let's just hammer this home one more time because it's a common point of confusion. With a for loop, you're given i each time, and i is just a number. With each, what we're given each time is the value directly. We don't need to use an index number to get to it. 
 
-// Let's revisit our looping exercises from before, and refactor them to use each. 
+// Let's revisit our looping exercises from Week 1, and refactor them to use each. 
 // We've created an array and an object for you to practice with below. 
 var arr = [100,200,300,400,500];
 var obj = {
@@ -137,7 +142,7 @@ var obj = {
     // console.log('plusEqualsVar after += 10 is:',plusEqualsVar);
     // What += does is exacly the same as if you had typed 
     var assignedVar = 5;
-    assignedVar = assignedVar = 10;
+    assignedVar = assignedVar + 10;
     // console.log('assignedVar after assignedVar = assignedVar + 10 is:',assignedVar);
     
 

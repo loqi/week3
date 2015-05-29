@@ -68,10 +68,10 @@ var obj = {
   // Inside the callback function, console log the string 'hi, I'm inside the callback!'
   // You should see this pop up 5 times in your console. 
   // This should tell you that the function is being invoked 5 times. And all it's doing is running the body of the function once on every iteration. There's no magic there. 
-  // The body of the callback function is just a block of code the same number of times are there are items in the array.
+  // The body of the callback function is just a block of code we invoke the same number of times as there are items in the array.
     // If we have 5 items in our array, we will run this block of code 5 times. 
 
-// 2. Cool, now let's console.log what item, the first parameter our callback takes in, is for each iteration.
+// 2. Cool, now let's console.log what item, the first parameter for our callback, is for each iteration.
   // You should see 
   // 100
   // 200
@@ -83,14 +83,13 @@ var obj = {
   // Remember that a callback function is just a block of code that we execute the same number of times as we have items in the array. 
     // The key thing that changes each time is what the item is. 
 
-
 // 3. Declare a variable called count that exists in the global scope, and set it equal to 0. Now that you're comfortable accessing each item in arr, let's console log both count (which will represent the index of that item) and the relevant value stored in arr. So with each iteration we'll want to increase count by 1. 
   // So what we'd expect to see in our console is:
-  // 'the value of count is: 0, the value we're accessing in the array is 100'
-  // 'the value of count is: 1, the value we're accessing in the array is 200'
-  // 'the value of count is: 2, the value we're accessing in the array is 300'
-  // 'the value of count is: 3, the value we're accessing in the array is 400'
-  // 'the value of count is: 4, the value we're accessing in the array is 500'
+  // 'count is: 0, the value we're accessing in the array is 100'
+  // 'count is: 1, the value we're accessing in the array is 200'
+  // 'count is: 2, the value we're accessing in the array is 300'
+  // 'count is: 3, the value we're accessing in the array is 400'
+  // 'count is: 4, the value we're accessing in the array is 500'
 
 // 4. Great! Now you've figured out that our callback function is just a block of code that gets run once on each item in an array. 
   // Now let's use a new _.each invocation to play with items in the array. 
@@ -105,35 +104,35 @@ var obj = {
 // You could just change all the invocations we had for the exercises above to be invoked on obj, instead of arr. Nothing other than that has to change. 
 // And while it's powerful to realize that _.each has some logic built into it that lets you use the same callback function for both arrays and objects, you'd be robbing yourself of a chance to gain a deeper understanding by typing these invocations again and building out that muscle memory. So let's write new _.each invocations for each exercise below, and get quicker and better at them each time!
 
-// 5. Create an _.each invocation to iterate through our obj. 
+// 5. Create a new _.each invocation to iterate through our obj. 
   // Inside the body of the callback function, console.log the string 'hi, i'm inside the callback!''
   // You should see this pop up 3 times in your console.
   // This should tell you that the callback function in our _.each invocation is running 3 times. And, much like when we invoked this callback on our arr, all it's doing is running the body of the callback once on each iteration. 
 // 6. Now let's check out what key is on each iteration.
-  // Remember that for objects, each passes in both the value and the key to each invocation of the callback
+  // Remember that for objects, each passes in both the value and the key to each invocation of the callback.
   // If you console.log the key in the for callback function body, you should see 
   // 'city'
   // 'slingsCode'
   // 'excitementLevel' 
   // in your console.
   // key is just a variable, that is set equal to each of the keys in our object one at a time. This part is identical to what we saw with our for loop for objects. But remember, we don't actually need to use this key to access the values! _.each gives that to us automatically as the first argument passed into our callback. 
-  // Just for fun, let's create an empty array outside of our for loop called arrayOfKeys. 
+  // Just for fun, let's create an empty array outside of each called arrayOfKeys. 
     // On each iteration, let's push the key into this arrayOfKeys. After your for loop, console.log the arrayOfKeys. 
-    // You should see ['city', 'slingsCode', 'excitementLevel']. Note that they may not be in this order, 
-    // since we can't guarantee the order that an object's keys are in. 
+    // You should see ['city', 'slingsCode', 'excitementLevel']. Note that they may not be in this order, since we can't guarantee the order that an object's keys are in. 
 // 7. Ok, now that we've figured out that key is just a variable that will be set equal to the name of each property in obj, 
-  // let's prove that we don't need to use it to access the values stored in obj. (and in fact, using key to access those values is an anti-pattern you should avoid).
+  // let's prove that we don't need to use it to access the values stored in obj. (and in fact, using key to access those values is an anti-pattern).
   // Write a new _.each invocation to iterate through obj, console logging each value to the console. 
   // We'd expect to see
   // 'Oakland'
   // true
   // 10
-  // Now that you're comfortable accessing each value in obj, let's console log both key and the relevant value stored in obj, again, without using key to access that value, since _.each gives it to us directly. 
+  // Now that you're comfortable accessing each value in obj, let's console log both key and the relevant value stored in obj, again, without using key to access that value, since _.each gives the value to us directly. 
   // So what we'd expect to see in our console is:
     // 'the value of key is: city, the value _.each is giving us from that object is Oakland'
     // 'the value of key is: slingsCode, the value _.each is giving us from that object is true'
     // 'the value of key is: excitementLevel, the value _.each is giving us from that object is 10'
 // You should be feeling pretty great about iterating through objects using _.each now! 
+
 
 // Bonus Material: Plus Equals += 
     // Let's show you an example. 
@@ -145,5 +144,4 @@ var obj = {
     assignedVar = assignedVar + 10;
     // console.log('assignedVar after assignedVar = assignedVar + 10 is:',assignedVar);
     
-
 // Extra credit: Filter time! Look up the docs on _.filter. Use filter to filter through the array of color objects map returned to us earlier and give us only the two objects that are purple. 

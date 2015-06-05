@@ -1,35 +1,47 @@
-// Welcome to the exercises for scopes and closures!
+// Today's exercise covers scopes and closures!
 
-// Much like yesterday, a lot of today is going to involve explaining your code to your pair. Follow a similar pattern to yesterday: Think through what you expect the code to do, explain that your pair, and then test it out to see what it actually does (with clear labels!!). Once you see the actual results (which will often be different than your expectations), explain why we're seeing that behavior to your pair. 
+// Think through what you expect the code to do and explain it to your pair, and then
+// test it out to see what it actually does (with clear labels!!). Once you see the
+// results, which may differ from your expectations, explain to your pair why we're
+// seeing that behavior.
 
-// Today we're going to use a restaurant's kitchen as our example. We're going to have a couple different areas to our fancy kitchen: 
-// bbqMeatCooker
-// vegetarianCorner
-// pastryConcoctions
-// Clearly, each of these will have their own set of tools, and we need to make sure they share some things (a common restaurant name) and not others (say the cutting board from the bbqMeatCooker and the vegetarian friendly one from vegetarianCorner). 
+// Today we're going to use a restaurant kitchen as our example. We're going to have
+// a few different areas to our fancy kitchen: `bbqMeatCooker`, `vegetarianCorner`,
+// `pastryConcoctions`. Each of these will has its own set of tools, and we need to
+// make sure they share some things and not others, say separate cutting boards for
+// bbqMeatCooker and vegetarianCorner.
 
-// First, let's put the name and address of our restaurant in the global scope. 
+// First, let's put the name and address of our restaurant in the global scope.
 var restaurantName = 'Telegraph Cook';
 var address = '1600 Shattuck Ave';
 
-// Next we'll create the vegetarianCorner. We want to hold some variables here that are only accessible inside vegetarianCorner, so we can keep it vegan friendly. How do we keep some variables private in JS? Local Scope! And what's the only way to create local scope in JS? Inside a function body, using the var keyword! So we'll create a function for our vegetarianCorner. 
+// Next we'll create the vegetarianCorner. We want to hold some variables here that
+// are only accessible inside vegetarianCorner, so we can keep it vegan friendly. We
+// can keep variables private in JavaScrpt by means of a local scope. The only way
+// to create a local scope is with the `var` keyword inside a function body. So we'll
+// create a function for our vegetarianCorner.
 
 var vegetarianCorner = function() {
-  // We have a dedicated veggie chef (yeah, we're a super fancy restaurant). Let's set her name here: 
+  // We have a dedicated veggie chef (yeah, we're a super fancy restaurant). Let's set her name here:
   var chef = 'Amanda';
   // And a favorite dish: 
   var favoriteDish = 'saag paneer';
 
-  // To warm up, what do you expect chef to be if we console log it right here? 
-    // Explain to your partner the process the JS interpreter will go through to figure out what chef is. 
-    // My explanation would go something like "First, it encounters chef, which it recognizes is a variable since it's not wrapped in quotes. It goes to look up what that variable is equal to. It looks in it's own scope first, and finds chef there! chef is equal to the string 'Amanda', and so it console.logs that string."
+  // What do you expect chef to be if we console log it on this line?
+  // Explain to your partner the process the JS interpreter will go through to figure out
+  // what `chef` is.
+  // My explanation: First, it recognizes `chef` as a variable name. It searches the variables
+  // in the scope {global}{vegentarianCorner} and finds one named `chef`. That's as far as the
+  // search goes, so it finds that variable contains the string 'Amanda' and logs that string.
 
-  // And what would we expect address to be right here?
+  // What would we expect address to be at this line?
 };
 vegetarianCorner();
 
+
+
 // Now that we're back in the global scope (we're no longer inside the function body), what is chef?
-  // Explain why to your pair. 
+// Explain why to your pair.
 // What is address in this scope? Why?
 
 // Great! Now let's create the rival bbqMeatCooker section of our kitchen. 

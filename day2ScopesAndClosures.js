@@ -1,15 +1,12 @@
-// Today's exercise covers scopes and closures!
-
-// Think through what you expect the code to do and explain it to your pair, and then
-// test it out to see what it actually does (with clear labels!!). Once you see the
-// results, which may differ from your expectations, explain to your pair why we're
-// seeing that behavior.
-
 // Today we're going to use a restaurant kitchen as our example. We're going to have
 // a few different areas to our fancy kitchen: `bbqMeatCooker`, `vegetarianCorner`,
-// `pastryConcoctions`. Each of these will has its own set of tools, and we need to
-// make sure they share some things and not others, say separate cutting boards for
+// `pastryConcoctions`. Each of these will have its own set of tools. We need to be
+// sure they share some things and not others, such as separate cutting boards for
 // bbqMeatCooker and vegetarianCorner.
+
+// Think through what you expect the code to do and explain it to your pair, and then
+// test it out to see what it actually does. Once you see the results, which may differ
+// from your expectations, explain to your pair why we're seeing that behavior.
 
 // First, let's put the name and address of our restaurant in the global scope.
 var restaurantName = 'Telegraph Cook';
@@ -22,27 +19,120 @@ var address = '1600 Shattuck Ave';
 // create a function for our vegetarianCorner.
 
 var vegetarianCorner = function() {
-  // We have a dedicated veggie chef (yeah, we're a super fancy restaurant). Let's set her name here:
+  // We have a dedicated veggie chef (yeah, we're a super fancy restaurant).
+  // Our chef has a name
   var chef = 'Amanda';
-  // And a favorite dish: 
+  // Chef Amanda has a favorite dish
   var favoriteDish = 'saag paneer';
 
-  // What do you expect chef to be if we console log it on this line?
-  // Explain to your partner the process the JS interpreter will go through to figure out
-  // what `chef` is.
-  // My explanation: First, it recognizes `chef` as a variable name. It searches the variables
-  // in the scope {global}{vegentarianCorner} and finds one named `chef`. That's as far as the
-  // search goes, so it finds that variable contains the string 'Amanda' and logs that string.
+  // What do you expect varible `chef` to be if we console log it on this line?
+  console.log(chef);  
+  // Explain to your partner the process the JS interpreter will go through to figure
+  // out what `chef` is.
+
+
+
+  // After you reason through it with your pair, read this detailed explanation:
+  //
+  // The JS interpreter recognizes `console`, `log` and `chef` all as identifiers (variable
+  // or property names). The interpreter finds its variables according to JS rules for variable
+  // lookup. Since the line of code `console.log(chef);` is part of the code of vegetarionCorner(),
+  // it first looks in the most local scope ~global~vegentarianCorner~ (this twiddle stuff is not
+  // JS synax, it's invented punctuation for describing these scopes). If not found there, it
+  // checks the next outer scope ~global~ and if not found there, since that's the outermost scope,
+  // it decides the variable is not defined. By following these rules, it finds `console` in
+  // ~global~ and `chef` in ~global~vegetarianCorner~. The `.` in `console.log` is the dot operator
+  // This is a bivalent operator meaning "The expression on the left refers to an object; the
+  // expression on the right is a string that conforms to the JS identifier rules and is understood
+  // to be a property name stuck right into the code; go look up that property in that object and
+  // resolve the whole left-dot-right expression to the value of that property, or `undefined` if
+  // not found."
+  //
+  // These are the steps the interpreter follows from here:
+  //
+  // 0.  Parse the code `console.log(chef); bla bla bla` and figure out what to do next.
+  // 1.  Search the scope ~global~vegetarianCorner~ for a variable named `console`.
+  // 2.  Found it in ~global~. It contains a reference to an object in memory.
+  // 3.  Search that object you found for a porperty whose key is the string "log".
+  // 4.  Found it in there. It contains a reference to a function in memory.
+  // 5.  Search the scope ~global~vegetarianCorner~ for a variable named `chef`.
+  // 6.  Found it in local scope. It pretends to contain "Amanda". Good enough for me.
+  // 7.  Invoke the function found in step 4 with the string 'Amanda' as its argument.
+  // 7a. Then a miracle occurs.
+  // 8.  The expression `console.log(chef)` means that function's return value `undefined`.
+  // 9.  The semicolon marks the end of a statement. Discard that `undefined`. Done.
+
+  // http://star.psy.ohio-state.edu/coglab/Miracle.html
+  // Step 7a is where console.log() actually does its business. It's main purpose is to cause
+  // a side effect. That side effect is to build up a string message and send it to the console
+  // for display to the user (in this case, that's you, the JS jockey). That function always
+  // returns no value. It may seem strange to call the main purpose of a function a side effect,
+  // but sometimes it's useful to think of it that way. A "pure function" has the property of
+  // "idempotence". That's a fancy word that means you can call the function as many times as
+  // you want, and the only lasting change is to the clock on the wall. The console.log function
+  // stuffs a bunch of characters into the console object, and renders those characters to the
+  // user's screen (if the console is showing). Whether we're talking about writing to global
+  // variables, changing the user's video display, or controlling a robot welding arm on a
+  // factory floor, we're talking about "side effects" from the perspective of "pure functions".
+  // You'll find that most functions have side effects in order to be useful. An example of a
+  // pure function would be Math.cos(angle). The cosine of an angle is always the same no matter
+  // what. In fact, mathemeticians call this "the cosine function" because that's what the word
+  // "function" means to a mathematician. Other programming functions, like myArray.push(value)
+  // exhibit "side effects" that might reasonably be called "effects". Unless we're being a
+  // mathemetician right now, we just think of everything a function is supposed to do as the
+  // normal effects of that function.
+
 
   // What would we expect address to be at this line?
 };
-vegetarianCorner();
+// At this point, there exists a new function somewhere in memory, and a variable `vegetarianCorner`.
+vegetarianCorner(); // Execute that function, which is already pointed to by that variable.
+// At this point, the code inside the curly braces above will have been executed.
 
 
-
-// Now that we're back in the global scope (we're no longer inside the function body), what is chef?
+// Now that we're back in the global scope (This code is outside the curly braces above), what is
+// in the variable `chef`?
 // Explain why to your pair.
-// What is address in this scope? Why?
+// What is in `address` variable? Why?
+
+// ANSWERS:
+//
+// Both `address` and `chef` exist when the interpreter reaches >HERE<
+//
+// However, any code outside the vegetarianCorner function cannot see the `chef` variable.
+// That variable currently contains the string "Amanda", but it's outside our reach while
+// flow control is executing code outside of the function where it was defined. Out here,
+// we are in the global function because we're not inside at explicitly defined function
+// (this line is not between the curly braces of a `function` keyword structure). Out here,
+// we can see all the global variables. In there, we can see all the global variables and
+// the "closure variables" of vegetarianCorner. In computer science, a "closure" is a function
+// along with its data context, bundled together and carried around as one unit. This is
+// subtly different from an object, which also bundles code and other data together. We'll
+// leave that distinction aside for now.
+//
+// In JavaScript, closures are the normal way of doing business. Any variable is part of a
+// closure. The global scope is itself a closure, although since it's global, the closure
+// concept loses its meaning and works just like a simple programming environment. Any `var`
+// statement inside a function definition creates a variable in the namespace associated with
+// that function. The word `namespace` means a context in which you can unambiguously use a
+// name that is guaranteed to be unique. For example, you might have the name "Susan Smith" and
+// around your office, you're "Susan", in your company directory, you're "Smith, Susan", and on
+// your tax return, you're "078-05-1120, Smith, Susan". Each of these contexts is a namespace.
+// In JavaScript, variable namespaces exist in closures and are totally independent of one
+// another. If you want a heirarchical namesace that are shaped like the Smith example , you'd
+// use object properties instead of JavaScript variables. For this excercise, we use variables.
+//
+// Out here, our code can see variable `vegetarianCorner` that currently contains a reference
+// to a function, described by the code above. The variable `chef` exists, and its data is
+// remembered for as long as the function above continues to exist in memory. Every function
+// keeps its own variables. In fact, a JavaScript function is a kind of object. It remembers
+// the JS it was given as its mission in life, and it remembers its variable names and their
+// content in the same way it remembers its JS code. It also remembers a bunch of other stuff
+// that comes with being a JavaScript function. The interpreter just builds all this stuff up
+// at runtime and carries it around in memory until the last reference to that function is
+// forgotten, leaving the memory space of the function, its variables, and its supporting
+// object properties to be eligible for garbage collection when the memory is needed.
+
 
 // Great! Now let's create the rival bbqMeatCooker section of our kitchen. 
 
